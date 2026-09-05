@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The House Of Media</title>
+<meta name="description" content="A room-by-room look at the brands HOMe has moved in content, campaigns and reels built for our clients.">
+<meta property="og:title" content="Portfolio — HOMe">
+<meta property="og:description" content="A curated look at the work behind HOMe — The House Of Media.">
+<meta property="og:image" content="https://thehouseofmedia.com/preview-image.jpg">
+<meta property="og:url" content="https://thehouseofmedia.com/portfolio.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ECE7D9;
+    --bg-soft: #F4F0E6;
+    --bg-panel: #E1DAC4;
+    --ink: #211C15;
+    --ink-soft: #514A3C;
+    --blue: #123456;
+    --blue-deep: #0041c2;
+    --blue-pale: #DBDEFB;
+    --white: #FFFFFF;
+    --line: rgba(33,28,21,0.16);
+    --radius: 18px;
+    --shadow: 0 18px 40px rgba(33,28,21,0.10);
+    --ease: cubic-bezier(.65,0,.35,1);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; scroll-padding-top:100px; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .door-leaf, .figure-float, .g-door, .scroll-hint svg{ animation:none !important; }
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body.menu-open,body.lb-open{ overflow:hidden; }
+
+  body::before{
+    content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");
+    background-size:160px; mix-blend-mode:multiply; opacity:.035;
+  }
+
+  #spb{ position:fixed; top:0; left:0; z-index:9998; height:2.5px; width:0%;
+    background:linear-gradient(90deg, var(--blue-deep), var(--blue)); transition:width .05s linear; }
+
+  img,svg{ display:block; max-width:100%; overflow:visible; }
+
+  #bg3d{ position:fixed; inset:0; z-index:-1; width:100%; height:100%; pointer-events:none; display:block; }
+  @media (max-width:600px){ #bg3d{ opacity:.6; } }
+
+  h1,h2,h3,.display{
+    font-family:'Archivo Black',sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    color:var(--blue);
+  }
+  .serif{ font-family:'Lora',serif; }
+
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+
+  .wrap{ width:min(1180px, 92%); margin-inline:auto; }
+
+  .eyebrow{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.72rem;
+    letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-soft);
+  }
+
+  /* Utility class for WhatsApp inline links */
+  .wa-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+  .wa-link svg {
+    width: 20px; 
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.95rem;
+    padding:0.9rem 1.6rem; border-radius:0; border:2px solid var(--blue); cursor:pointer;
+    transition:transform .35s var(--ease), background .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease);
+    white-space:nowrap;
+  }
+  .btn-solid{ background:var(--blue); color:var(--white); box-shadow:0 10px 24px rgba(69,82,230,0.28); }
+  .btn-solid:hover{ background:var(--blue-deep); border-color:var(--blue-deep); transform:translateY(-3px); }
+  .btn-ghost{ background:transparent; color:var(--blue); }
+  .btn-ghost:hover{ background:var(--blue); color:var(--white); transform:translateY(-3px); }
+  .btn svg{ width:16px; height:16px; transition:transform .3s var(--ease); }
+  .btn:hover svg{ transform:translateX(4px); }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; inset:0 0 auto 0; z-index:100; padding:1.1rem 0;
+    transition:background .4s var(--ease), box-shadow .4s var(--ease), padding .4s var(--ease), transform .45s var(--ease);
+  }
+  header.scrolled{
+    background:rgba(236,231,217,0.92); backdrop-filter:blur(10px);
+    box-shadow:0 6px 24px rgba(33,28,21,0.08); padding:0.7rem 0;
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ display:flex; flex-direction:column; line-height:1; }
+  .logo .mark{
+    font-family:'Archivo Black',sans-serif; font-size:1.55rem; color:var(--blue);
+    display:flex; align-items:center; gap:0.12em; text-transform:none;
+  }
+  .logo .mark .doorzero{ position:relative; width:0.62em; height:0.9em; display:inline-block; }
+  .logo .mark .doorzero svg{ width:100%; height:100%; }
+  .logo .tag{ font-size:0.55rem; letter-spacing:0.28em; color:var(--ink-soft); margin-top:2px; text-transform:uppercase; font-family:'Inter',sans-serif; font-weight:600;}
+  .nav-links{ display:flex; align-items:center; gap:2.1rem; }
+  .nav-links a{ font-size:0.92rem; font-weight:600; color:var(--ink); position:relative; padding-bottom:4px; }
+  .nav-links a::after{ content:""; position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--blue); transition:width .3s var(--ease); }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-links a.active::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:1.6rem; }
+  .burger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
+  .burger span{ width:24px; height:2px; background:var(--ink); transition:transform .3s var(--ease), opacity .3s var(--ease); }
+
+  .mobile-menu{
+    position:fixed; inset:0; background:var(--ink); z-index:99;
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:0;
+    padding:0 8vw; transform:translateY(-100%); transition:transform .5s var(--ease); overflow-y:auto;
+  }
+  .mobile-menu.open{ transform:translateY(0); }
+  .mm-eyebrow{ font-family:'Inter',sans-serif; font-weight:700; font-size:0.72rem; letter-spacing:.32em; text-transform:uppercase; color:rgba(244,240,230,0.35); margin-bottom:2rem; }
+  .mobile-menu a.mm-link{
+    font-family:'Archivo Black',sans-serif; font-size:clamp(2.1rem,9vw,3rem); text-transform:uppercase;
+    color:rgba(244,240,230,0.92); display:flex; align-items:baseline; gap:1rem; padding:0.5rem 0; line-height:1.1;
+  }
+  .mm-num{ font-family:'Inter',sans-serif; font-weight:700; font-size:0.85rem; color:var(--blue-pale); opacity:.7; }
+  .mm-contact{ margin-top:2.4rem; padding-top:1.8rem; border-top:1px solid rgba(244,240,230,0.15); display:flex; flex-direction:column; gap:0.9rem; width:100%; }
+  .mm-contact a{ font-family:'Inter',sans-serif; font-weight:600; font-size:1rem; color:rgba(244,240,230,0.6); }
+
+  section{ padding:6.5rem 0; position:relative; }
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Portfolio hero ---------- */
+  .p-hero{
+    padding:11.5rem 0 4rem; text-align:center; position:relative; z-index:2;
+  }
+  .p-hero-badge{
+    display:inline-flex; align-items:center; gap:0.6rem; padding:0.5rem 1.2rem;
+    background:var(--white); border:1.5px solid var(--line); border-radius:40px;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.72rem; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--blue-deep); margin-bottom:1.6rem; box-shadow:var(--shadow);
+  }
+  .p-hero-dot{ width:6px; height:6px; background:var(--blue); border-radius:50%; animation:pulseDot 2s infinite ease-in-out; }
+  @keyframes pulseDot{ 0%,100%{ opacity:.4; transform:scale(1);} 50%{ opacity:1; transform:scale(1.25);} }
+  .p-hero h1{ font-size:clamp(2.6rem,7vw,5.2rem); margin:0 auto 1.2rem; max-width:16em; }
+  .p-hero h1 em{ font-style:italic; font-family:'Lora',serif; text-transform:none; color:var(--ink); font-weight:600; letter-spacing:0; }
+  .p-hero p{ color:var(--ink-soft); font-size:1.08rem; max-width:32rem; margin:0 auto 2rem; }
+  
+  /* ---------- Flowchart ---------- */
+  .p-flowchart { display:flex; align-items:center; justify-content:center; gap:1.2rem; flex-wrap:wrap; margin-top:2.5rem; }
+  .p-flow-node {
+    display:inline-flex; align-items:center; padding:0.8rem 1.4rem; background:var(--white);
+    border:1.5px solid var(--line); border-radius:12px; font-family:'Inter',sans-serif; font-weight:700;
+    font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue-deep);
+    box-shadow: 0 12px 24px rgba(33,28,21,0.06); position:relative; z-index:2;
+  }
+  .p-flow-path { width:54px; height:24px; color:var(--blue); flex-shrink:0; }
+  
+  @media (max-width:760px){
+    .p-flowchart { flex-direction:column; gap:0.6rem; }
+    .p-flow-path { transform:rotate(90deg); width:34px; }
+  }
+
+  .dvd{ display:flex; align-items:center; gap:1.4rem; padding:0 5vw 1rem; }
+  .dl{ flex:1; height:1px; background:linear-gradient(to right, transparent, var(--line), transparent); }
+
+  /* ---------- Gallery ---------- */
+  .gallery-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:2.6rem; flex-wrap:wrap; gap:1rem; }
+  .gallery-eyebrow{ font-family:'Inter',sans-serif; font-weight:700; font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); }
+  .gallery-count{ font-family:'Lora',serif; font-style:italic; font-weight:600; font-size:0.95rem; color:var(--blue-deep); }
+
+  .gallery-grid{ columns:3; column-gap:1.4rem; }
+  @media (max-width:980px){ .gallery-grid{ columns:2; } }
+  @media (max-width:600px){ .gallery-grid{ columns:1; } }
+
+  .g-item{
+    break-inside:avoid; margin-bottom:1.4rem; position:relative; border-radius:var(--radius);
+    overflow:hidden; background:var(--bg-soft); border:1.5px solid var(--line); cursor:pointer;
+    transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+  }
+  .g-item:hover{ transform:translateY(-5px); box-shadow:var(--shadow); border-color:var(--blue); }
+  .g-item img{ width:100%; display:block; transition:transform .65s var(--ease), opacity .5s var(--ease); }
+  .g-item:hover img{ transform:scale(1.045); }
+  .g-overlay{
+    position:absolute; inset:0; background:linear-gradient(to top, rgba(33,28,21,0.62) 0%, transparent 55%);
+    opacity:0; transition:opacity .4s var(--ease); display:flex; align-items:flex-end; justify-content:space-between; padding:1.1rem 1.3rem;
+  }
+  .g-item:hover .g-overlay{ opacity:1; }
+  .g-num{ font-family:'Lora',serif; font-style:italic; font-weight:600; font-size:1.05rem; color:rgba(244,240,230,0.85); }
+  .g-door{
+    width:34px; height:34px; border-radius:50%; background:rgba(244,240,230,0.14);
+    border:1px solid rgba(244,240,230,0.35); display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(6px); perspective:60px;
+  }
+  .g-door svg{ width:14px; height:20px; }
+  .g-door-leaf{ transform-origin:left center; transform-box:fill-box; transition:transform .45s var(--ease); }
+  .g-item:hover .g-door-leaf{ transform:rotateY(-46deg); }
+
+  /* ---------- Lightbox ---------- */
+  #lightbox{
+    position:fixed; inset:0; z-index:20000; background:rgba(33,28,21,0.94); backdrop-filter:blur(16px);
+    display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .4s var(--ease);
+  }
+  #lightbox.active{ opacity:1; pointer-events:all; }
+  .lb-inner{ position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:5vh 8vw; }
+  #lb-img{
+    max-width:86vw; max-height:82vh; object-fit:contain; border-radius:12px;
+    box-shadow:0 40px 90px rgba(0,0,0,0.55); transition:opacity .25s, transform .25s var(--ease); display:block;
+  }
+  #lb-img.switching{ opacity:0; transform:scale(.97); }
+  .lb-close, .lb-btn{
+    position:fixed; z-index:5; border-radius:50%; background:rgba(244,240,230,0.1); border:1px solid rgba(244,240,230,0.22);
+    display:flex; align-items:center; justify-content:center; color:var(--bg-soft); cursor:pointer;
+    transition:background .3s var(--ease), transform .3s var(--ease);
+    appearance:none; -webkit-appearance:none; outline:none; padding:0; margin:0;
+    font-family:inherit; line-height:1; box-shadow:none;
+  }
+  .lb-close{ top:2rem; right:2rem; width:44px; height:44px; }
+  .lb-close:hover{ background:var(--blue); border-color:var(--blue); transform:rotate(90deg); }
+  .lb-close svg{ width:16px; height:16px; flex-shrink:0; pointer-events:none; }
+  .lb-btn{ top:50%; left:auto; right:auto; transform:translateY(-50%); width:48px; height:48px; }
+  .lb-btn:hover{ background:var(--blue); border-color:var(--blue); }
+  #lbPrev{ left:2rem; }
+  #lbNext{ right:2rem; }
+  .lb-btn svg{ width:16px; height:16px; flex-shrink:0; pointer-events:none; }
+  .lb-counter{
+    position:fixed; bottom:2.2rem; left:50%; transform:translateX(-50%); font-family:'Inter',sans-serif;
+    font-weight:700; font-size:0.78rem; letter-spacing:0.2em; color:rgba(244,240,230,0.5);
+    display:flex; align-items:center; gap:1.1rem;
+  }
+  .lb-dots{ display:flex; gap:0.4rem; flex-wrap:wrap; max-width:280px; justify-content:center; }
+  .lb-dot{ width:5px; height:5px; border-radius:50%; background:rgba(244,240,230,0.25); transition:background .3s, transform .3s; cursor:pointer; }
+  .lb-dot.active{ background:var(--blue-pale); transform:scale(1.5); }
+  @media (max-width:680px){
+    #lb-img{ max-width:94vw; max-height:74vh; margin-top:-4vh; }
+    .lb-close{ top:1.4rem; right:1.4rem; width:40px; height:40px; }
+    .lb-btn{ top:auto; bottom:1.8rem; transform:none; }
+    .lb-btn:hover{ transform:scale(1.06); }
+    #lbPrev{ left:5vw; } #lbNext{ right:5vw; }
+    .lb-counter{ bottom:3rem; }
+  }
+
+  /* ---------- Founders strip (Joint Photo Edition) ---------- */
+  .founders-strip{ background:var(--bg-soft); border-top:1.5px solid var(--line); border-bottom:1.5px solid var(--line); }
+  .founders-top{ text-align:center; max-width:34rem; margin:0 auto 3.5rem; }
+  .founders-top h2{ font-size:clamp(1.9rem,4vw,2.9rem); margin:0.7rem 0 0; }
+  .founders-top h2 em{ font-style:italic; font-family:'Lora',serif; text-transform:none; color:var(--blue-deep); font-weight:600; }
+  
+  .founders-joint-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  
+  .fj-photo {
+    position: relative;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--line);
+    background: var(--white);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+  }
+  .fj-photo img {
+    width: 100%;
+    height: auto; /* This lets the photo dictate the box height naturally */
+    border-radius: calc(var(--radius) - 0.5rem);
+    display: block;
+    object-fit: cover;
+    background: var(--bg-soft);
+  }
+
+  /* Drawn labels overlay */
+  .fj-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white); /* White text usually pops nicely against photos */
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(33,28,21,0.85); /* Readability shadow */
+    filter: drop-shadow(0 2px 4px rgba(33,28,21,0.5));
+    z-index: 5;
+  }
+  .fj-label svg {
+    width: 55px;
+    height: 55px;
+    margin-top: 5px;
+    /* This mimics the squiggly drawn arrow style */
+  }
+
+  /* Adjust these top/left/right/bottom values based on your exact photo composition */
+  .fj-honey {
+    bottom: 45%;
+    left: 8%;
+  }
+  .fj-honey svg {
+    /* Rotates the 'W' arrow to point down and right */
+    transform: rotate(100deg); 
+    margin-left: 20px;
+  }
+  
+  .fj-jheel {
+    top: 25%;
+    right: 8%;
+  }
+  .fj-jheel svg {
+    /* Flips and rotates the 'W' arrow to point down and left */
+    transform: scaleX(-1) rotate(100deg); 
+    margin-right: 20px;
+  }
+
+  /* Bios stacked on the right */
+  .fj-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+  .fj-bio {
+    background: var(--white);
+    padding: 2.4rem;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 12px 24px rgba(33,28,21,0.04);
+    transition: transform .4s var(--ease), border-color .4s var(--ease);
+  }
+  .fj-bio:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue);
+  }
+  .founder-name { font-family: 'Lora', serif; font-weight: 700; font-size: 1.45rem; color: var(--ink); line-height: 1.1; }
+  .founder-role { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-deep); margin: 0.6rem 0 1.2rem; }
+  .founder-bio { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.7; margin: 0; }
+
+  @media (max-width: 860px){ 
+    .founders-joint-layout { grid-template-columns: 1fr; gap: 2.5rem; } 
+    /* Removed the 1/1 aspect ratio so it doesn't crop out their faces on the sides */
+    .fj-photo img { aspect-ratio: auto; }
+  }
+
+  /* Add this new query to specifically fix the label sizes and placement on mobile screens */
+  @media (max-width: 600px){
+    .fj-label { font-size: 1rem; }
+    .fj-label svg { width: 35px; height: 35px; margin-top: 2px; }
+    
+    .fj-honey { bottom: 45%; left: 4%; }
+    .fj-honey svg { margin-left: 10px; }
+    
+    .fj-jheel { top: 30%; right: 4%; }
+    .fj-jheel svg { margin-right: 10px; }
+  }
+
+  /* ---------- CTA ---------- */
+  .p-cta{ text-align:center; }
+  .p-cta h2{ font-size:clamp(2rem,4vw,3rem); margin:0.7rem 0 1rem; }
+  .p-cta h2 em{ font-style:italic; font-family:'Lora',serif; text-transform:none; color:var(--blue-deep); font-weight:600; }
+  .p-cta p{ color:var(--ink-soft); font-size:1.06rem; max-width:28rem; margin:0 auto 2rem; }
+  .p-cta-btns{ display:flex; align-items:center; justify-content:center; gap:1.6rem; flex-wrap:wrap; }
+  .link-underline{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.92rem; color:var(--ink-soft);
+    border-bottom:1.5px solid var(--line); padding-bottom:2px; transition:color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .link-underline:hover{ color:var(--ink); border-color:var(--ink); }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--bg-soft); padding:4.5rem 0 0; border-radius:32px 32px 0 0; border-top:1.5px solid var(--line); position:relative; overflow:hidden; }
+  .footer-main{ display:grid; grid-template-columns:minmax(240px, 320px) 1fr 1fr; gap:3rem; padding-bottom:2.6rem; border-bottom:1.5px solid var(--line); position:relative; z-index:1; }
+  .footer-brand{ padding-right:1rem; }
+  .footer-brand .logo{ margin-bottom:1.1rem; }
+  .footer-brand .logo .mark{ color:var(--ink); font-size:1.4rem; }
+  .footer-brand .logo .mark .doorzero svg rect, .footer-brand .logo .mark .doorzero svg circle{ stroke:var(--blue); fill:var(--blue); }
+  .footer-brand .logo .tag{ color:var(--ink-soft); }
+  .footer-tagline{
+    font-family:'Lora',serif; font-style:italic; font-weight:600; color:var(--ink-soft); font-size:1.05rem;
+    letter-spacing:0; max-width:17rem; line-height:1.45; margin-bottom:1.4rem; position:relative; padding-left:0.9rem;
+  }
+  .footer-tagline::before{ content:""; position:absolute; left:0; top:0.2em; bottom:0.2em; width:2px; background:var(--blue); border-radius:2px; }
+  .footer-social{ display:flex; gap:0.6rem; }
+  .footer-social a{
+    width:34px; height:34px; border-radius:50%; border:1.5px solid var(--line); display:flex; align-items:center;
+    justify-content:center; color:var(--ink-soft); transition:all .35s var(--ease);
+  }
+  .footer-social a svg{ width:15px; height:15px; }
+  .footer-social a:hover{ background:var(--blue); color:var(--white); border-color:var(--blue); transform:translateY(-3px); box-shadow:0 10px 20px rgba(69,82,230,0.22); }
+  .footer-col h4{ font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink); margin-bottom:1.3rem; font-weight:800; }
+  .footer-col a{ display:block; font-size:0.9rem; margin-bottom:0.85rem; color:var(--ink-soft); font-weight:500; transition:color .3s var(--ease); }
+  .footer-col a:last-child{ margin-bottom:0; }
+  .footer-col a:hover{ color:var(--blue); }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding:1.6rem 0; font-size:0.78rem; color:var(--ink-soft); flex-wrap:wrap; gap:0.8rem; position:relative; z-index:1; }
+  .back-to-top{
+    display:flex; align-items:center; gap:0.4rem; font-weight:700; color:var(--ink); font-size:0.82rem;
+    padding:0.4rem 0.8rem; border:1.5px solid var(--line); border-radius:0;
+    transition:border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease), background .3s var(--ease);
+  }
+  .back-to-top:hover{ border-color:var(--blue); color:var(--blue); background:var(--white); transform:translateY(-2px); }
+  .back-to-top svg{ width:13px; height:13px; }
+  .footer-watermark{
+    display:block; text-align:center; font-family:'Archivo Black',sans-serif; text-transform:uppercase;
+    font-size:clamp(2.6rem, 9vw, 6rem); line-height:0.8; letter-spacing:-0.02em;
+    background:linear-gradient(180deg, rgba(33,28,21,0.12) 0%, rgba(33,28,21,0.02) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    padding:0.6rem 0 0.9rem; user-select:none; pointer-events:none; position:relative; z-index:1;
+  }
+
+  @media (max-width:980px){
+    .footer-main{ grid-template-columns:1fr 1fr; row-gap:2.4rem; }
+    .footer-brand{ grid-column:1 / -1; padding-right:0; }
+  }
+  @media (max-width:760px){
+    .nav-links, .nav-right .btn{ display:none; }
+    .burger{ display:flex; }
+    .footer-main{ grid-template-columns:1fr; row-gap:2rem; }
+    .footer-brand{ grid-column:auto; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg3d" aria-hidden="true"></canvas>
+<div id="spb"></div>
+
+<div id="lightbox">
+  <div class="lb-inner">
+    <img id="lb-img" src="" alt="Portfolio work">
+  </div>
+  <button class="lb-close" id="lbClose" aria-label="Close">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M1 1l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <button class="lb-btn" id="lbPrev" aria-label="Previous">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M9 1L3 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="lb-btn" id="lbNext" aria-label="Next">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M5 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="lb-counter">
+    <span id="lbNum">01 / 09</span>
+    <div class="lb-dots" id="lbDots"></div>
+  </div>
+</div>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="index.html" class="logo">
+      <span class="mark">H
+        <span class="doorzero">
+          <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="34" height="54" rx="17" stroke="#4552E6" stroke-width="5"/>
+            <circle cx="27" cy="30" r="2.6" fill="#4552E6"/>
+          </svg>
+        </span>
+      Me</span>
+      <span class="tag">The House Of Media</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#approach">Approach</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="index.html#testimonials">Reviews</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mm-eyebrow">Navigation</span>
+  <a href="index.html#about" class="mm-link"><span class="mm-num">01</span>About</a>
+  <a href="index.html#services" class="mm-link"><span class="mm-num">02</span>Services</a>
+  <a href="index.html#approach" class="mm-link"><span class="mm-num">03</span>Approach</a>
+  <a href="portfolio.html" class="mm-link"><span class="mm-num">04</span>Portfolio</a>
+  <a href="index.html#testimonials" class="mm-link"><span class="mm-num">05</span>Reviews</a>
+  <a href="index.html#contact" class="mm-link"><span class="mm-num">06</span>Contact</a>
+  <div class="mm-contact">
+    <a href="https://wa.me/919372866328?text=Hi!%20I'd%20like%20to%20talk%20about%20working%20with%20The%20House%20Of%20Media." target="_blank" rel="noopener" class="wa-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      Message on WhatsApp
+    </a>
+    <a href="tel:9372866328">93728 66328</a>
+    <a href="https://instagram.com/thehouseofmedia.official" target="_blank" rel="noopener">@thehouseofmedia.official</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <section class="p-hero wrap">
+    <h1 class="reveal">The full <em>house</em><br>tour</h1>
+    <p class="reveal">A room-by-room look at the content, campaigns and reels we've built for the brands who've moved in with HOMe.</p>
+    
+    <div class="p-flowchart reveal">
+      <div class="p-flow-node">Content Creation</div>
+      <svg class="p-flow-path" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 10 Q 15 20, 30 10 T 56 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M51 5 L57 10 L51 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="p-flow-node">Reels &amp; Video</div>
+      <svg class="p-flow-path" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 10 Q 15 0, 30 10 T 56 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M51 5 L57 10 L51 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="p-flow-node">Brand Campaigns</div>
+    </div>
+  </section>
+
+  <section id="gallery-section">
+    <div class="wrap">
+      <div class="gallery-head reveal">
+        <span class="gallery-eyebrow">Click any piece to walk through it</span>
+        <span class="gallery-count">9 pieces</span>
+      </div>
+      <div class="gallery-grid" id="gallery"></div>
+    </div>
+  </section>
+
+  <section class="founders-strip">
+    <div class="wrap">
+      <div class="founders-top reveal">
+        <span class="eyebrow">Who's Home</span>
+        <h2>Built by two founders, <em>one house</em></h2>
+      </div>
+      
+      <div class="founders-joint-layout reveal">
+        <!-- Joint Photo Block -->
+        <div class="fj-photo">
+          <img src="bothFounders.jpg" alt="Honey and Jheel Jain">
+          
+          <!-- Hand-drawn Label: Honey (Left) -->
+          <div class="fj-label fj-honey">
+            <span>Jheel</span>
+            <!-- Custom SVG mimicking the provided "W" upward squiggly arrow -->
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 10 50 Q 15 80 25 80 Q 35 80 40 40 Q 45 80 60 80 Q 75 80 85 15" />
+              <polyline points="65 25, 85 15, 90 35" />
+            </svg>
+          </div>
+
+          <!-- Hand-drawn Label: Jheel (Right) -->
+          <div class="fj-label fj-jheel">
+            <span>Honey</span>
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 10 50 Q 15 80 25 80 Q 35 80 40 40 Q 45 80 60 80 Q 75 80 85 15" />
+              <polyline points="65 25, 85 15, 90 35" />
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Founder Bios Block -->
+        <div class="fj-content">
+          <div class="fj-bio">
+            <div class="founder-name">Honey Jain</div>
+            <div class="founder-role">Co-Founder & Creative Director</div>
+            <p class="founder-bio">Honey leads the creative vision at House of Media, bringing ideas to life through content strategy, trend research, references, concepts and visual direction. With a strong eye for aesthetics and what works on social media, she focuses on developing scroll-stopping ideas, creative campaigns and content that feels fresh, relevant and aligned with each brand’s identity.</p>
+          </div>
+          
+          <div class="fj-bio">
+            <div class="founder-name">Jheel Jain</div>
+            <div class="founder-role">Co-Founder & Production Director</div>
+            <p class="founder-bio">Jheel leads the production and execution side of House of Media, turning creative concepts into high-quality visual content. From recording and directing shoots to editing and refining the final output, she brings strong storytelling and attention to detail to every project, ensuring that every piece of content is polished, engaging and true to the creative vision.</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="p-cta wrap">
+    <span class="eyebrow reveal">Let's Talk</span>
+    <h2 class="reveal">Like what's <em>inside?</em></h2>
+    <p class="reveal">Let's build a room for your brand too, one you'll actually want to live in.</p>
+    <div class="p-cta-btns reveal">
+      <a href="index.html#contact" class="btn btn-solid">Knock On The Door
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="index.html#services" class="link-underline">See What's Inside</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-main">
+      <div class="footer-brand reveal">
+        <a href="index.html" class="logo">
+          <span class="mark">H
+            <span class="doorzero">
+              <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="34" height="54" rx="17" stroke="#4552E6" stroke-width="5"/>
+                <circle cx="27" cy="30" r="2.6" fill="#4552E6"/>
+              </svg>
+            </span>
+          Me</span>
+          <span class="tag">The House Of Media</span>
+        </a>
+        <div class="footer-social">
+          <a href="https://instagram.com/thehouseofmedia.official" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.6" cy="7.4" r="0.8" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://wa.me/919372866328?text=Hi!%20I'd%20like%20to%20talk%20about%20working%20with%20The%20House%20Of%20Media." target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <a href="tel:9372866328" aria-label="Phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2.2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col reveal">
+        <h4>Site</h4>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#approach">Approach</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col reveal">
+        <h4>Policies</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="cookie.html">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HOMe — The House Of Media. All rights reserved.</span>
+      <a href="#top" class="back-to-top">Back to top
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <span class="footer-watermark" aria-hidden="true">HOMe</span>
+</footer>
+
+<script>
+  /* ---------- Gallery build ---------- */
+  const TOTAL = 9;
+  const gallery = document.getElementById('gallery');
+  const doorSvg = `<svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g class="g-door-leaf"><rect x="3" y="3" width="34" height="54" rx="17" stroke="#F4F0E6" stroke-width="5"/>
+      <circle cx="27" cy="30" r="2.6" fill="#F4F0E6"/></g></svg>`;
+  for (let i = 1; i <= TOTAL; i++){
+    const item = document.createElement('div');
+    item.className = 'g-item reveal';
+    item.dataset.index = i;
+    item.innerHTML = `
+      <img src="portfolio-${i}.jpg" alt="HOMe portfolio piece ${i}" loading="lazy">
+      <div class="g-overlay">
+        <span class="g-num">${String(i).padStart(2,'0')}</span>
+        <span class="g-door">${doorSvg}</span>
+      </div>`;
+    item.addEventListener('click', () => openLightbox(i));
+    gallery.appendChild(item);
+  }
+
+  /* ---------- Lightbox ---------- */
+  let current = 1;
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbNum = document.getElementById('lbNum');
+  const lbDots = document.getElementById('lbDots');
+
+  for (let i = 1; i <= TOTAL; i++){
+    const dot = document.createElement('div');
+    dot.className = 'lb-dot';
+    dot.addEventListener('click', () => goTo(i));
+    lbDots.appendChild(dot);
+  }
+  function updateUI(idx){
+    lbNum.textContent = `${String(idx).padStart(2,'0')} / ${String(TOTAL).padStart(2,'0')}`;
+    document.querySelectorAll('.lb-dot').forEach((d,i) => d.classList.toggle('active', i+1 === idx));
+  }
+  function goTo(idx){
+    lbImg.classList.add('switching');
+    setTimeout(() => {
+      current = idx;
+      lbImg.src = `portfolio-${idx}.jpg`;
+      updateUI(idx);
+      lbImg.classList.remove('switching');
+    }, 200);
+  }
+  function openLightbox(idx){
+    current = idx;
+    lbImg.src = `portfolio-${idx}.jpg`;
+    updateUI(idx);
+    lb.classList.add('active');
+    document.body.classList.add('lb-open');
+  }
+  function closeLightbox(){
+    lb.classList.remove('active');
+    document.body.classList.remove('lb-open');
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => goTo(current > 1 ? current-1 : TOTAL));
+  document.getElementById('lbNext').addEventListener('click', () => goTo(current < TOTAL ? current+1 : 1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') goTo(current > 1 ? current-1 : TOTAL);
+    if (e.key === 'ArrowRight') goTo(current < TOTAL ? current+1 : 1);
+  });
+
+  /* ---------- Nav ---------- */
+  const header = document.getElementById('siteHeader');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 40);
+    if (!mobileMenu.classList.contains('open')){
+      if (y > lastY && y > 160) header.style.transform = 'translateY(-100%)';
+      else header.style.transform = 'translateY(0)';
+    }
+    lastY = y;
+  }, { passive:true });
+
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  /* ---------- Scroll progress ---------- */
+  const spb = document.getElementById('spb');
+  window.addEventListener('scroll', () => {
+    const max = document.body.scrollHeight - window.innerHeight;
+    spb.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+  }, { passive:true });
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  /* ---------- 3D background ---------- */
+  (function(){
+    const canvas = document.getElementById('bg3d');
+    if (!canvas || typeof THREE === 'undefined') return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.z = 9;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const baseGeo = new THREE.IcosahedronGeometry(3.4, 1);
+    const edges = new THREE.EdgesGeometry(baseGeo);
+    const lineMat = new THREE.LineBasicMaterial({ color: 0x4552e6, transparent: true, opacity: 0.22 });
+    const wireframe = new THREE.LineSegments(edges, lineMat);
+    wireframe.position.set(3.2, -0.6, 0);
+    scene.add(wireframe);
+
+    const baseGeo2 = new THREE.IcosahedronGeometry(1.5, 0);
+    const edges2 = new THREE.EdgesGeometry(baseGeo2);
+    const lineMat2 = new THREE.LineBasicMaterial({ color: 0x2c36a8, transparent: true, opacity: 0.16 });
+    const wireframe2 = new THREE.LineSegments(edges2, lineMat2);
+    wireframe2.position.set(-3.6, 2.4, -3);
+    scene.add(wireframe2);
+
+    function resize(){
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    window.addEventListener('resize', resize, { passive: true });
+
+    let scrollT = 0, targetScrollT = 0;
+    window.addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      targetScrollT = max > 0 ? window.scrollY / max : 0;
+    }, { passive: true });
+
+    let t = 0;
+    function tick(){
+      scrollT += (targetScrollT - scrollT) * 0.06;
+      t += reduceMotion ? 0 : 0.0022;
+
+      wireframe.rotation.x = t * 1.4 + scrollT * Math.PI * 1.4;
+      wireframe.rotation.y = t * 1.8 + scrollT * Math.PI * 2.2;
+      wireframe.position.y = -0.6 + scrollT * 3.2;
+
+      wireframe2.rotation.x = -t * 1.1 - scrollT * Math.PI * 1.1;
+      wireframe2.rotation.y = t * 1.3 - scrollT * Math.PI * 1.6;
+      wireframe2.position.y = 2.4 - scrollT * 4.4;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+</script>
+
+</body>
+</html>

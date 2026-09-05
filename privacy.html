@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — HOMe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ECE7D9;
+    --bg-soft: #F4F0E6;
+    --ink: #1A1713;
+    --ink-soft: #5C5549;
+    --blue: #123456; 
+    --blue-bright: #4552E6; 
+    --line: rgba(26, 23, 19, 0.12);
+    --ease: cubic-bezier(.65,0,.35,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 160px; }
+  
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Disable text selection */
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Subtle aesthetic grain for texture */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 160px; mix-blend-mode: multiply; opacity: .04;
+  }
+
+  /* Refined, ultra-thin scroll progress */
+  #spb { position: fixed; top: 0; left: 0; z-index: 9998; height: 1.5px; width: 0%;
+    background: var(--blue); transition: width .1s ease-out; }
+
+  /* Match headings color to main page */
+  h1, h2, h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--blue);
+  }
+
+  .serif { font-family: 'Lora', serif; font-style: italic; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  .wrap {
+    width: min(1280px, 92%);
+    margin-inline: auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ---------- Nav ---------- */
+  header {
+    position: fixed; inset: 0 0 auto 0;
+    z-index: 100;
+    padding: 1.4rem 0;
+    transition: background .4s var(--ease), box-shadow .4s var(--ease), padding .4s var(--ease), transform .45s var(--ease);
+  }
+  header.scrolled {
+    background: rgba(236,231,217,0.85);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap { display: flex; align-items: center; justify-content: space-between; }
+
+  .logo { display: flex; flex-direction: column; line-height: 1; }
+  .logo .mark {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.55rem;
+    color: var(--blue);
+    display: flex; align-items: center; gap: 0.12em;
+    text-transform: none;
+  }
+  .logo .mark .doorzero { position: relative; width: 0.62em; height: 0.9em; display: inline-block; }
+  .logo .mark .doorzero svg { width: 100%; height: 100%; }
+  .logo .tag { font-size: 0.55rem; letter-spacing: 0.28em; color: var(--ink-soft); margin-top: 4px; text-transform: uppercase; font-family: 'Inter', sans-serif; font-weight: 600;}
+
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 600; color: var(--ink);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    position: relative; padding-bottom: 4px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0; height: 1.5px; width: 0;
+    background: var(--ink); transition: width .4s var(--ease);
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ---------- Page Header ---------- */
+  .page-header {
+    padding: 14rem 0 6rem;
+    text-align: left;
+  }
+  .page-header h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    margin-bottom: 1.5rem;
+    max-width: 14ch;
+  }
+  .page-header p {
+    color: var(--ink-soft);
+    font-size: 1.25rem;
+    max-width: 42rem;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ---------- Layout ---------- */
+  .terms-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 6rem;
+    align-items: start;
+    padding-bottom: 10rem;
+    border-top: 1px solid var(--line);
+    padding-top: 6rem;
+  }
+
+  /* ---------- Sticky Sidebar ---------- */
+  .terms-sidebar {
+    position: sticky;
+    top: max(140px, 15vh);
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+  }
+  .terms-sidebar::-webkit-scrollbar { display: none; }
+  
+  .toc-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+  }
+
+  .toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  
+  .toc-link {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+    transition: all 0.4s var(--ease);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .toc-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.8rem;
+    opacity: 0.4;
+    transition: all 0.4s var(--ease);
+  }
+
+  /* Elegant line indicator for TOC */
+  .toc-link::before {
+    content: '';
+    width: 0;
+    height: 1px;
+    background: var(--blue);
+    transition: width 0.4s var(--ease);
+  }
+  
+  .toc-link:hover {
+    color: var(--blue);
+  }
+  
+  .toc-link.active {
+    color: var(--blue);
+    font-weight: 700;
+  }
+  
+  .toc-link.active .toc-num {
+    opacity: 1;
+    color: var(--blue);
+  }
+
+  .toc-link.active::before {
+    width: 1.5rem;
+  }
+
+  /* ---------- Content Area ---------- */
+  .terms-content {
+    max-width: 54rem;
+  }
+
+  .terms-section {
+    padding-bottom: 5rem;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .terms-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .terms-section h2 {
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    color: var(--blue);
+  }
+
+  .terms-section h2 span {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--ink-soft);
+    font-weight: 400;
+    text-transform: none;
+  }
+
+  .terms-section p {
+    font-size: 1.05rem;
+    color: var(--ink);
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .terms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  /* Editorial list style (em-dash instead of bullets) */
+  .terms-list li {
+    position: relative;
+    padding-left: 2.2rem;
+    font-size: 1.05rem;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+
+  .terms-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--bg-soft);
+    padding: 6rem 0 2rem;
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+  }
+  .footer-main { display: grid; grid-template-columns: minmax(280px, 360px) 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--line); }
+  .footer-col h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.8rem; font-weight: 800; }
+  .footer-col a { display: block; font-size: 0.95rem; margin-bottom: 1rem; color: var(--ink-soft); font-weight: 500; transition: color .3s var(--ease); }
+  .footer-col a:hover { color: var(--blue); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; font-size: 0.8rem; color: var(--ink-soft); flex-wrap: wrap; gap: 1rem; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px) {
+    /* Mobile Magic: Transform Sidebar into a compact number column */
+    .terms-layout { 
+      grid-template-columns: 80px 1fr; 
+      gap: 2rem; 
+      border-top: none; 
+      padding-top: 0; 
+    }
+    .page-header { padding: 10rem 0 4rem; }
+    
+    .toc-title { display: none; }
+    .toc-text { display: none; } 
+    .toc-link::before { display: none; } 
+    
+    .toc-link {
+      justify-content: flex-start;
+      border-left: 2px solid transparent;
+      padding-left: 0.6rem;
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+    }
+    
+    .toc-link.active {
+      border-left: 2px solid var(--blue);
+    }
+    
+    .toc-num {
+      font-size: 1.1rem;
+    }
+
+    .footer-main { grid-template-columns: 1fr 1fr; row-gap: 3rem; }
+  }
+
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .footer-main { grid-template-columns: 1fr; row-gap: 2.5rem; }
+    .terms-section h2 { flex-direction: column; gap: 0.2rem; }
+    .terms-layout { grid-template-columns: 50px 1fr; gap: 1.5rem; }
+    .toc-num { font-size: 0.9rem; }
+    .toc-link { padding-left: 0.4rem; }
+  }
+</style>
+</head>
+<!-- Block context menu and copy shortcuts -->
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onpaste="return false;">
+
+<div id="spb"></div>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="/" class="logo">
+      <span class="mark">H
+        <span class="doorzero">
+          <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="34" height="54" rx="17" stroke="var(--blue-bright)" stroke-width="5"/>
+            <circle cx="27" cy="30" r="2.6" fill="var(--blue-bright)"/>
+          </svg>
+        </span>
+        Me</span>
+      <span class="tag">The House Of Media</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">About</a>
+      <a href="/">Services</a>
+      <a href="/">Portfolio</a>
+      <a href="/">Approach</a>
+      <a href="/">Reviews</a>
+      <a href="/">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-header wrap">
+    <h1>Privacy Policy</h1>
+    <p>This Privacy Policy describes how HOMe — The House Of Media collects, uses, and protects your personal information when you visit our website or engage with our services.</p>
+  </section>
+
+  <section class="terms-layout wrap">
+    
+    <!-- STICKY TABLE OF CONTENTS -->
+    <aside class="terms-sidebar">
+      <div class="toc-title">Index</div>
+      <nav class="toc-list" id="tocList">
+        <a href="#section-1" class="toc-link"><span class="toc-num">01</span><span class="toc-text">Information We Collect</span></a>
+        <a href="#section-2" class="toc-link"><span class="toc-num">02</span><span class="toc-text">How We Use Information</span></a>
+        <a href="#section-3" class="toc-link"><span class="toc-num">03</span><span class="toc-text">Sharing & Disclosure</span></a>
+        <a href="#section-4" class="toc-link"><span class="toc-num">04</span><span class="toc-text">Data Security</span></a>
+        <a href="#section-5" class="toc-link"><span class="toc-num">05</span><span class="toc-text">Your Privacy Rights</span></a>
+        <a href="#section-6" class="toc-link"><span class="toc-num">06</span><span class="toc-text">Third-Party Links</span></a>
+        <a href="#section-7" class="toc-link"><span class="toc-num">07</span><span class="toc-text">Policy Updates</span></a>
+        <a href="#section-8" class="toc-link"><span class="toc-num">08</span><span class="toc-text">Contact Us</span></a>
+      </nav>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <div class="terms-content">
+      
+      <div id="section-1" class="terms-section">
+        <h2><span>01</span> Information We Collect</h2>
+        <p>We only collect the information necessary to provide our services and improve your experience. This includes:</p>
+        <ul class="terms-list">
+          <li><strong>Information you provide directly:</strong> When you contact us via WhatsApp, email, or direct message, we collect your name, contact details, and any project-specific information you share.</li>
+          <li><strong>Automatically collected data:</strong> While we currently prioritize a minimalist visual portfolio without aggressive tracking, basic technical data (like browser type, device information, and standard server logs) may be collected automatically when you visit our site to ensure proper functionality and security.</li>
+        </ul>
+      </div>
+
+      <div id="section-2" class="terms-section">
+        <h2><span>02</span> How We Use Information</h2>
+        <p>We use the information we collect for the following operational and business purposes:</p>
+        <ul class="terms-list">
+          <li>To respond to your inquiries, schedule consultations, and discuss potential collaborations.</li>
+          <li>To provide, operate, and maintain the services you request from us.</li>
+          <li>To send administrative information, updates regarding projects, and invoices.</li>
+          <li>To improve the design, security, and functionality of our digital presence.</li>
+        </ul>
+      </div>
+
+      <div id="section-3" class="terms-section">
+        <h2><span>03</span> Sharing & Disclosure</h2>
+        <p>We respect your privacy and do not sell, rent, or trade your personal information. We only share information under the following circumstances:</p>
+        <ul class="terms-list">
+          <li><strong>Service Providers:</strong> We may share data with trusted third-party vendors (such as hosting platforms or invoicing software) who assist us in operating our agency, subject to strict confidentiality obligations.</li>
+          <li><strong>Legal Requirements:</strong> We may disclose information if required to do so by law, or in response to valid requests by public authorities.</li>
+          <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, client information may be transferred as a business asset.</li>
+        </ul>
+      </div>
+
+      <div id="section-4" class="terms-section">
+        <h2><span>04</span> Data Security</h2>
+        <p>We implement reasonable and standard security measures to protect your personal information from unauthorized access, alteration, or disclosure. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to protect your data, we cannot guarantee its absolute security.</p>
+      </div>
+
+      <div id="section-5" class="terms-section">
+        <h2><span>05</span> Your Privacy Rights</h2>
+        <p>Depending on your location, you may have specific rights regarding your personal data. Generally, you have the right to:</p>
+        <ul class="terms-list">
+          <li>Request access to the personal data we hold about you.</li>
+          <li>Request correction of any inaccurate or incomplete data.</li>
+          <li>Request deletion of your personal information, subject to legal and operational retention requirements.</li>
+        </ul>
+        <p>To exercise any of these rights, please contact us using the details provided below.</p>
+      </div>
+
+      <div id="section-6" class="terms-section">
+        <h2><span>06</span> Third-Party Links</h2>
+        <p>Our website may contain links to external platforms, such as Instagram or WhatsApp. We are not responsible for the privacy practices, tracking methods, or content of these third-party websites. We encourage you to read the privacy policies of any site you visit upon leaving ours.</p>
+      </div>
+
+      <div id="section-7" class="terms-section">
+        <h2><span>07</span> Policy Updates</h2>
+        <p>We may periodically update this Privacy Policy to reflect changes in our practices, services, or legal requirements. When we make updates, we will amend the date at the top of this page. We encourage you to review this policy periodically to stay informed about how we are protecting your information.</p>
+      </div>
+
+      <div id="section-8" class="terms-section">
+        <h2><span>08</span> Contact Us</h2>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your data, please reach out to us:</p>
+        <ul class="terms-list">
+          <li>Via WhatsApp: <a href="https://wa.me/919372866328" style="color: var(--blue); text-decoration: underline;">+91 93728 66328</a></li>
+          <li>Via Instagram: <a href="https://www.instagram.com/thehouseofmedia.official/" style="color: var(--blue); text-decoration: underline;">@thehouseofmedia.official</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <span class="mark">H
+            <span class="doorzero">
+              <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="34" height="54" rx="17" stroke="var(--blue-bright)" stroke-width="5"/>
+                <circle cx="27" cy="30" r="2.6" fill="var(--blue-bright)"/>
+              </svg>
+            </span>
+            Me</span>
+          <span class="tag">The House Of Media</span>
+        </a>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="/">About</a>
+        <a href="/">Services</a>
+        <a href="/">Approach</a>
+        <a href="/">Reviews</a>
+        <a href="/">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="cookie.html">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HOMe — The House Of Media. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Block keyboard shortcuts like Ctrl+C or Cmd+C for copying
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C')) {
+      e.preventDefault();
+    }
+  });
+
+  // Ultra-smooth Scroll progress bar
+  (function(){
+    const spb = document.getElementById('spb');
+    window.addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      spb.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+    }, { passive:true });
+  })();
+
+  // Header blur effect on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive:true });
+
+  // Intersection Observer for highlighting the active TOC link
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.terms-section');
+    const navLinks = document.querySelectorAll('.toc-link');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-160px 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === entry.target.id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
+
+</body>
+</html>
